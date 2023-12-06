@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators ,FormBuilder,FormGroup} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
+import { UserService } from '../user.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class RegisterComponent  {
 
-  constructor(public snackBar: MatSnackBar,private fb: FormBuilder ) {}
+
+  constructor(public snackBar: MatSnackBar,private fb: FormBuilder,  private userService: UserService ) {}
 
 
   password = new FormControl('', [Validators.required,Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}')]);
@@ -94,14 +97,18 @@ export class RegisterComponent  {
   registerFn(){
    if(this.password.valid && this.confirmpassword.valid && this.email.valid && this.name.valid )
    {
-    //this.password.value,this.confirmpassword.value,this.email.value,this.name.value
+    this.password.value,this.confirmpassword.value,this.email.value,this.name.value
  
-    // let payload={
-    //   password:this.password.value,
-    //   confirm_password:this.confirmpassword.value,
-    //   email:this.email.value,
-    //   name:this.name.value,
-    // }
+    let payload={
+      action:"insert",
+      uname:this.name.value,
+      password:this.password.value,
+      email:this.email.value,
+    }
+
+    this.userService.registerUser(payload).subscribe((data) => {
+      console.log(data);
+    })
 
     }
     
