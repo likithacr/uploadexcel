@@ -1,0 +1,29 @@
+mat-label{
+    color: #1a4ea1;
+  }
+
+p{
+    color: #1a4ea1;
+}
+
+.register-main{
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-link{
+  color: #5a5a5a;
+}
+
+.submitbutton{
+    margin-left: 6vw;
+  color: white;
+  border: white;
+}
+
+.submitbutton:disabled,
+.button[disabled]{
+  color: white;
+  border: white;
+}

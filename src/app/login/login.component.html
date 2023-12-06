@@ -1,0 +1,41 @@
+<div  class="login-main container-fluid d-flex">
+    <div class="container-fluid"  style="width: 425px;" >
+        <mat-card class="bg-body mat-elevation-z8">
+            <mat-card-header class="container-fluid">
+                <p class="fs-5 ps-5 ms-4">Login page</p>
+            </mat-card-header>
+          <form >
+            <mat-card-content> 
+              <mat-label class="email-p">Email</mat-label>
+              <mat-form-field class="input-group" appearance="outline"  >
+                <mat-icon matPrefix class="my-icon" >perm_identity</mat-icon>
+                <input class="input-field" (click)="invalidcreds()"  matInput  [formControl]="email" placeholder="Enter email address"  required >
+                <mat-error  class="error" *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+              </mat-form-field>
+              
+              <mat-label class="password-p">Password</mat-label>
+              <mat-form-field class="input-group " appearance="outline" >
+                <mat-icon matPrefix class="my-icon"><i class="material-icons">lock_outline</i></mat-icon>
+                <input class="input-field" (click)="invalidcreds()" matInput  required [type]="hide ? 'password' : 'text'"  [formControl]="password" placeholder="Enter your password">
+              <mat-error  class="error" *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field>
+
+             <mat-error class="text-center" *ngIf="invalidcred" >{{errormessage}}</mat-error>
+           </mat-card-content>
+        
+           <mat-card-actions class="justify-content-center">
+            <button class="btn btn-lg w-50" type="submit" [style.background-color]="getBackgroundColor()" [disabled]="isDisabled" (click)="validate()" >LOGIN</button>
+           </mat-card-actions>
+        
+             <mat-card-footer class="text-center">
+              <div class="justify-content-center mb-3">
+                <!-- <a class=" text-decoration-none"  routerLinkActive="activebutton" routerLink="/passwordreset" ariaCurrentWhenActive="page">Forgot Password?</a> <br> -->
+                <a class="text-decoration-none"  routerLinkActive="activebutton" routerLink="/register"  ariaCurrentWhenActive="page"><span>Need an account?</span> Sign up</a>
+              </div>
+            </mat-card-footer>
+          </form>  
+        </mat-card> 
+        </div>
+      </div>
+      
+    

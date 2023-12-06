@@ -1,0 +1,54 @@
+<div class="register-main d-flex">
+    <div class="container-fluid" style="width: 28%;">
+      <mat-card class="bg-body mat-elevation-z8 ">
+        <mat-card-header class="container-fluid">
+            <p class="fs-5 ps-5">Registration form</p>
+        </mat-card-header>
+        <form>
+          <mat-card-content>
+            <mat-label>Name</mat-label>
+            <mat-form-field class="input-group" appearance="outline">
+              <input class="input-field" matInput placeholder="Enter your name" [formControl]="name" required>
+              <mat-error class="error" *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
+            </mat-form-field>
+            <mat-label>Email</mat-label>
+            <mat-form-field class="input-group" appearance="outline">
+              <input class="input-field" matInput placeholder="Enter your email" [formControl]="email" required>
+              <mat-error class="error" *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+            </mat-form-field>
+          <div>
+            <mat-label>Password</mat-label>
+            <mat-form-field class="input-group" appearance="outline" >
+              <input class="input-field" matInput placeholder="Enter your password" required [type]="showPassword ? 'password' : 'text'" [formControl]="password">
+              <button mat-icon-button matSuffix (click)="showPassword = !showPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="showPassword">
+                <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+                <mat-error class="error" *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field> 
+          </div>
+          <div>
+            <mat-label>Confirm password</mat-label>
+            <mat-form-field class="input-group" appearance="outline">
+              <input class="input-field" matInput placeholder="Enter your password" required [type]="showConfirmPassword ? 'password' : 'text'" [formControl]="confirmpassword">
+              <button mat-icon-button matSuffix (click)="showConfirmPassword = !showConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="showConfirmPassword">
+                <mat-icon>{{showConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error class="error" *ngIf="confirmpassword.invalid">{{getErrorMessageConfirmPassword()}}</mat-error>
+            </mat-form-field>
+            <div class="text-center">
+              <p><mat-error class="small">{{getErrorMessage()}}</mat-error></p>
+            </div>
+          </div>
+          </mat-card-content>
+          <mat-card-actions class="justify-content-center">
+            <button class="btn btn-lg w-50 submitbutton" type="submit" [style.background-color]="getBackgroundColor()" [disabled]="isDisabled" routerLink="/login" (click)="openSnackBar('Registration Successful', 'Close');registerFn()">REGISTER</button>
+          </mat-card-actions>
+          <mat-card-footer class="text-center">
+            <div class="mb-3">
+              <a class="text-decoration-none" routerLinkActive="activebutton" routerLink="/login" ariaCurrentWhenActive="page"><span class="text-link">Already have an account?</span> Login </a>
+            </div>
+          </mat-card-footer>
+        </form>
+      </mat-card>
+    </div>
+  </div>
