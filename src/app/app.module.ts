@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 // export function init_app(dataapi: AppComponent) {
 //   // console.log("init test")
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    UserService
+    UserService,
+    DatePipe
     // AppComponent,
     // {
     //   provide: APP_INITIALIZER,

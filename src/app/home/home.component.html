@@ -8,20 +8,26 @@
       <mat-icon routerLink="/login">logout</mat-icon>
     </button>
   </mat-toolbar>
-<div class="container-fluid homes d-flex">
+  <div class="container-fluid homes d-flex">
     <div class="main">
       <div ><h3 class="text-center">Select the file and click on the upload button to upload the file</h3></div>
-      <input class="btn1" type="file"  id="csvFile" accept=".csv" />
-      <!-- <input class="btn1" type="file"  id="csvFile" accept=".csv" (change)="showname($)"/>
-      <div>
+      <input class="btn1" type="file"  id="csvFile" (change)="onFileChange($event)" accept=".csv" />
+      <!-- <input class="btn1" type="file"  id="csvFile" accept=".csv" (change)="showname($)"/>-->
+      <div> 
       <button class="btn" mat-raised-button color="primary" (click)="uploadS3()">Upload</button>
-      </div> -->
+      </div>
       <!-- <input type="file" (change)="onFileSelected($event)">
       <button (click)="onUpload()">Upload</button> -->
       <div>
         <p>{{uploadMessage}}</p>
       </div>
+      <div>
+        <div ><h3 class="text-center">Click download button to download CSV file template</h3></div>
+        <a href="/assets/uploadTemplate - Sheet1.csv" download="uploadtemplate">
+          <button class="btn" mat-raised-button color="primary" >Download</button>
+          </a>
+      </div>
     </div>
-</div>
+ </div>
 </div>
 
