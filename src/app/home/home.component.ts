@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { S3 } from 'aws-sdk';
 import * as AWS from 'aws-sdk';
+import * as Papa from 'papaparse';
+
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -9,9 +15,10 @@ import * as AWS from 'aws-sdk';
 })
 export class HomeComponent {
 
-  constructor() { }
+  constructor(private datepipe: DatePipe) { }
 
-  // file: File;
+
+  file!: File;
 
   // onFileSelected(event) {
   //   this.file = (event.target.files[0]);
@@ -23,8 +30,41 @@ export class HomeComponent {
   //     secretAccessKey: '0AEoduxPzXRvWsBYlDN7RS03taC0SlvqVewOznkY',
   //     region: 'us-east-1'
   //   });
+  // FOLDER = 'uploaded_data/';
+  // BUCKET = 'wtsops-rd';
 
-  //   const s3 = new AWS.S3();
+  //   s3 = new AWS.S3();
+  //   private getS3Bucket(): any {
+  //     const bucket = new S3(
+  //       {
+  //         accessKeyId: 'AKIAZ7EJRWGLFW3AYZPV',
+  //         secretAccessKey: '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',
+  //         region: 'us-east-1'
+  //       }
+  //     );
+  
+  //     return bucket;
+  //   }
+
+  //   getFiles() {
+      
+  
+  //     const params = {
+  //       Bucket: this.BUCKET,
+  //       Prefix: this.FOLDER
+  //     };
+  
+  //     this.getS3Bucket().listObjects(params, function (err: string, data: { Contents: any; }) {
+  //       if (err) {
+  //         console.log('There was an error getting your files: ' + err);
+  //         return;
+  //       }
+  
+  //       console.log('Successfully get files.', data);
+  
+  //       const fileDatas = data.Contents;
+  //     });
+  //   }
   //   const params = {
   //     Bucket: 'wtsops-rd',
   //     Key: this.file?.name,
@@ -78,23 +118,22 @@ export class HomeComponent {
   //   // });
   
 
-  //   s3.listObjects({
+    // s3.listObjects({
 
-  //     Bucket: 'wtsops-rd',
+    //   Bucket:'wtsops-rd',
     
-  //   }, function(err, data) {
+    // }, (err: { stack: any; }, data: any) {
     
-  //     if (err) {
+    //   if (err) {
     
-  //       console.log(err, err.stack);
+    //     console.log(err, err.stack);
     
-  //     } else {
+    //   } else {
     
-  //       console.log(data);
+    //     console.log(data);
     
-  //     }
-    
-  //   });
+    //   }
+    // });
 
   //   //this.fname=document.getElementById('csvFile');
   //   // this.filename = this.fname.files.item(0).name;
@@ -106,8 +145,9 @@ export class HomeComponent {
   //   // }
   // }
 
-  // fname!:any
-  // filename!: string;
+  fname!:any
+  filename!: string;
+  newfilename!: string;
 
   // showname(){
   //   console.log("showname")
@@ -118,6 +158,56 @@ export class HomeComponent {
 
         
   // }
+  
+  onFileChange(event:Event) {
+    let target=event.target as HTMLInputElement;
+    if(target.files && target.files.length>0)
+    {
+    this.file = target.files[0];
+    }
+  }
+ 
+
+  uploadS3(){
+    this.fname=document.getElementById('csvFile'); 
+    this.filename = this.fname.files.item(0).name;
+    
+     if(this.filename.length>15){
+      this.uploadMessage="Please rename the file with less than 15 characters to upload the file"
+    }
+    else{
+      this.uploadMessage="";
+      let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');
+      this.newfilename=this.filename+currentDateTime
+      console.log(this.newfilename.replace(/\s/g, ""))
+    }
+    
+    
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      let csvData = fileReader.result!.toString();
+      this.csvToJson(csvData);
+    }
+    fileReader.readAsText(this.file);
+  }
+
+  csvToJson(csvData: string): void {
+    Papa.parse(csvData, {
+      header: true,
+      complete: (result) => {
+        console.log('Parsed: ', result.data);
+      }
+    });
+
+//     let csvToJson = require('convert-csv-to-json');
+
+//     let json = csvToJson.getJsonFromCsv(this.fname.files.item(0));
+//     for(let i=0; i<json.length;i++){
+//     console.log(json[i]);
+// }
+     
+    
+  }
 
 
 }
