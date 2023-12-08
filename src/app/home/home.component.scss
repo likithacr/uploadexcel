@@ -1,0 +1,30 @@
+.homes{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    height: 100vh;
+}
+
+.btn1{
+    margin-left: 9vw;
+    margin-bottom: 2vw;
+}
+.btn{
+    margin-left: 11vw;
+    margin-bottom: 2vw;
+}
+
+:host {
+    .spacer-col {
+      flex: 1 1 auto;
+    }
+  }
+  mat-toolbar {
+    background-color: #ffffff;
+    height: 65px;
+    position: fixed;
+    z-index: 100;
+    width: 100%  !important;
+}
+
+
