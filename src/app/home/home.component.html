@@ -1,7 +1,7 @@
 <div>
   <mat-toolbar class="example-header" [class.mat-elevation-z2]="true">
     <div class="container-fluid text-center">
-      Upload Excel File</div>
+      Upload File</div>
       <span class="example-spacer"></span>
       <span>Logout</span>
     <button mat-icon-button class="example-icon">
@@ -10,10 +10,16 @@
   </mat-toolbar>
 <div class="container-fluid homes d-flex">
     <div class="main">
-      <div ><h3 class="text-center">Select the file and click on the upload button to upload an excel file</h3></div>
-      <input class="btn1" type="file"  id="jsonFile" accept=".xlsx" />
+      <div ><h3 class="text-center">Select the file and click on the upload button to upload the file</h3></div>
+      <input class="btn1" type="file"  id="csvFile" accept=".csv" />
+      <!-- <input class="btn1" type="file"  id="csvFile" accept=".csv" (change)="showname($)"/>
       <div>
-      <button class="btn" mat-raised-button color="primary">Upload</button>
+      <button class="btn" mat-raised-button color="primary" (click)="uploadS3()">Upload</button>
+      </div> -->
+      <!-- <input type="file" (change)="onFileSelected($event)">
+      <button (click)="onUpload()">Upload</button> -->
+      <div>
+        <p>{{uploadMessage}}</p>
       </div>
     </div>
 </div>

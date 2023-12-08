@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,21 +11,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private userService: UserService) {}
 
-  email = new FormControl('', [Validators.required,Validators.pattern('[A-Za-z0-9_]+@veolia.com'),]);
+  email = new FormControl('', [Validators.required,Validators.pattern('[a-z0-9_]+@veolia.com'),]);
   password = new FormControl('', [Validators.required]);
 
 
 
   registered = localStorage.getItem('registrationotp');
 
-  isDisabled = true;
+  //isDisabled = true;
   hide = true;
-  color = '#c3c3c3';
+ // color = '#58B7F4';
   errormessage!: string;
   reg= '[a-z0-9]+@veolia.com';
   invalidcred=false;
+  showPassword = true;
   
 
   getErrorMessageEmail() {
@@ -46,31 +49,37 @@ export class LoginComponent {
 
 
   
-  getBackgroundColor() {
-    if (this.email.value?.match(this.reg) && this.password.value !== '') {
-      this.color = '#58B7F4';
-      this.isDisabled = false;
-    } else {
-      this.color = '#c3c3c3';
-      this.isDisabled = true;
-    }
-    return this.color;
-  }
+  // getBackgroundColor() {
+  //   if (this.email.value?.match(this.reg) && this.password.value !== '') {
+  //     this.color = '#58B7F4';
+  //     this.isDisabled = false;
+  //   } else {
+  //     this.color = '#c3c3c3';
+  //     this.isDisabled = true;
+  //   }
+  //   return this.color;
+  // }
+
 
 
   validate() {
-    if (
-      this.email.value == 'admin@veolia.com' &&
-      this.password.value == 'admin'
-    ) { 
-      this.invalidcred = false
-      localStorage.setItem('visible', 'true');
-      this.router.navigate(['home']);
+    console.log("Validatefunction");
+    let loginpayload = {
+      action:"login",
+      password:this.password.value,
+      email:this.email.value,
     }
-    else {
-      this.invalidcred = true;
-      this.errormessage = "Invalid credentials"
-    }
+    this.userService.loginUser(loginpayload).subscribe((data) => {
+      console.log(data);
+      if (data['Code']=="Success") 
+      { 
+        this.router.navigate(['home']);
+      }
+      else {
+        this.errormessage = data['Message'];
+      }
+    })
+    
   }
   invalidcreds(){
     this.invalidcred = false

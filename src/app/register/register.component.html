@@ -2,7 +2,7 @@
     <div class="container-fluid" style="width: 28%;">
       <mat-card class="bg-body mat-elevation-z8 ">
         <mat-card-header class="container-fluid">
-            <p class="fs-5 ps-5">Registration form</p>
+            <p class="fs-5 ps-5">Registration Form</p>
         </mat-card-header>
         <form>
           <mat-card-content>
@@ -27,7 +27,7 @@
             </mat-form-field> 
           </div>
           <div>
-            <mat-label>Confirm password</mat-label>
+            <mat-label>Confirm Password</mat-label>
             <mat-form-field class="input-group" appearance="outline">
               <input class="input-field" matInput placeholder="Enter your password" required [type]="showConfirmPassword ? 'password' : 'text'" [formControl]="confirmpassword">
               <button mat-icon-button matSuffix (click)="showConfirmPassword = !showConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="showConfirmPassword">
@@ -41,11 +41,11 @@
           </div>
           </mat-card-content>
           <mat-card-actions class="justify-content-center">
-            <button class="btn btn-lg w-50 submitbutton" type="submit" [style.background-color]="getBackgroundColor()" [disabled]="isDisabled" routerLink="/login" (click)="openSnackBar('Registration Successful', 'Close');registerFn()">REGISTER</button>
+            <button class="btn btn-lg w-50 submitbutton" type="submit"  (click)="registerFn()" routerLink="/login">REGISTER</button>
           </mat-card-actions>
           <mat-card-footer class="text-center">
             <div class="mb-3">
-              <a class="text-decoration-none" routerLinkActive="activebutton" routerLink="/login" ariaCurrentWhenActive="page"><span class="text-link">Already have an account?</span> Login </a>
+              <a  routerLinkActive="activebutton" routerLink="/login" ariaCurrentWhenActive="page">Already have an account? Login </a>
             </div>
           </mat-card-footer>
         </form>

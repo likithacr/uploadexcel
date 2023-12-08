@@ -17,7 +17,7 @@ export class RegisterComponent  {
 
   password = new FormControl('', [Validators.required,Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}')]);
   name = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
-  email = new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9_]+@veolia.com')]);
+  email = new FormControl('', [Validators.required, Validators.pattern('[a-z0-9_]+@veolia.com')]);
   confirmpassword = new FormControl('', [Validators.required]);
   errorMessage = '';
 
@@ -65,22 +65,20 @@ export class RegisterComponent  {
   }
 
 
-  getBackgroundColor() {
-    if (this.email.value === '' || this.password.value === '' || this.name.value === '' || this.confirmpassword.value === '') {
-      this.color = '#c3c3c3';
-      this.isDisabled = true;
-    }
-    else {
-      this.color = '#58B7F4';
-      this.isDisabled = false;
-    }
-    return this.color;
-  }
+  // getBackgroundColor() {
+  //   if (this.email.value === '' || this.password.value === '' || this.name.value === '' || this.confirmpassword.value === '') {
+  //     this.isDisabled = true;
+  //   }
+  //   else {
+  //     this.isDisabled = false;
+  //   }
+  //   return this.color;
+  // }
 
   
 
-  isDisabled = true;
-  color = '#c3c3c3';
+  // isDisabled = true;
+  // color = '#c3c3c3';
   showPassword = true;
   showConfirmPassword = true;
   registrationotp = false;

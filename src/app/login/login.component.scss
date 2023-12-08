@@ -10,25 +10,24 @@
     color: #807e7e; 
   }
 
-  a{
-    color:#5a5a5a;
-  }
+ 
 
 .login-main
 {
     height: 100vh;
     align-items: center;
     justify-content: center;
+    background-color:rgba(239, 242, 245, 0.932);
 }
 
-button{
+.btn{
   color: white;
-  border: white;
+  background-color: #58B7F4;
   margin-left: 6vw;
 }
 
-button:disabled,
-button[disabled]{
-  color: white;
-  border: white;
-}
+// button:disabled,
+// button[disabled]{
+//   color: white;
+//   border: white;
+// }
