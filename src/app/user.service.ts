@@ -18,6 +18,8 @@ export class UserService {
 
   constructor( private httpclient: HttpClient ) {}
 
+  usermail = "";
+
   registerUser(indata:Object): Observable<any> {
     return this.httpclient.post(
       "https://j37mc1ybai.execute-api.us-east-1.amazonaws.com/devstage/testpostapi", indata,
@@ -28,6 +30,21 @@ export class UserService {
   loginUser(indata:Object): Observable<any> {
     return this.httpclient.post(
       "https://j37mc1ybai.execute-api.us-east-1.amazonaws.com/devstage/testpostapi", indata,
+      this.httpOptions
+    );
+  }
+
+  sendData(indata:Object): Observable<any> {
+    return this.httpclient.post(
+      "https://j37mc1ybai.execute-api.us-east-1.amazonaws.com/devstage/dataupload", indata,
+      this.httpOptions
+    );
+  }
+  // https://j37mc1ybai.execute-api.us-east-1.amazonaws.com/devstage/dataupload
+
+  sendMail(indata:Object): Observable<any> {
+    return this.httpclient.post(
+      "https://j37mc1ybai.execute-api.us-east-1.amazonaws.com/devstage/mailtest", indata,
       this.httpOptions
     );
   }

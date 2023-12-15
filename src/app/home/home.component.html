@@ -5,29 +5,39 @@
       <span class="example-spacer"></span>
       <span>Logout</span>
     <button mat-icon-button class="example-icon">
-      <mat-icon routerLink="/login">logout</mat-icon>
+      <mat-icon  (click)="logout()">logout</mat-icon>
     </button>
   </mat-toolbar>
   <div class="container-fluid homes d-flex">
-    <div class="main">
-      <div ><h3 class="text-center">Select the file and click on the upload button to upload the file</h3></div>
+    <mat-card class="bg-body p-4 mt-4 mat-elevation-z8">
+    <div class="main  text-center">
+      <div class="mt-4">
+        <h2 class="text-center">Select the file and click on the upload button</h2>
+        <p class="text-secondary text-center">Note: File name should be less than 15 characters and file type should be .csv</p>
+      </div>
       <input class="btn1" type="file"  id="csvFile" (change)="onFileChange($event)" accept=".csv" />
       <!-- <input class="btn1" type="file"  id="csvFile" accept=".csv" (change)="showname($)"/>-->
-      <div> 
-      <button class="btn" mat-raised-button color="primary" (click)="uploadS3()">Upload</button>
-      </div>
-      <!-- <input type="file" (change)="onFileSelected($event)">
+     <div style="    display: flex;
+     flex-wrap: wrap;
+     flex-direction: row;
+     justify-content: center; gap: 20px;">
+      <button class="btn btn-lg w-25" mat-raised-button color="primary" (click)="uploadS3()">Upload</button>
+      <mat-spinner [diameter]="25" *ngIf="showspinner" ></mat-spinner>
+    </div>
+      <!-- <input type="file" (change)="onFileSelected($event)"> 
       <button (click)="onUpload()">Upload</button> -->
-      <div>
-        <p>{{uploadMessage}}</p>
-      </div>
-      <div>
-        <div ><h3 class="text-center">Click download button to download CSV file template</h3></div>
-        <a href="/assets/uploadTemplate - Sheet1.csv" download="uploadtemplate">
-          <button class="btn" mat-raised-button color="primary" >Download</button>
+      <!-- <div>
+        <p class="text-center">{{uploadMessage}}</p>
+      </div> -->
+      <div class="shadow border border-secondary border-2 rounded p-2 text-center m-4">
+        <div ><p class="text-center text-secondary">Click to download CSV file template</p></div>
+        <a href="/assets/upload.csv" download="uploadtemplate">
+          <button class="btn btn-lg w-25" mat-raised-button color="primary" >Download</button>
           </a>
       </div>
     </div>
+    </mat-card>
+
  </div>
 </div>
 

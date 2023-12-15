@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './services/material.module';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';

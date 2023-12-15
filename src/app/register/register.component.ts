@@ -17,7 +17,7 @@ export class RegisterComponent  {
 
   password = new FormControl('', [Validators.required,Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}')]);
   name = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
-  email = new FormControl('', [Validators.required, Validators.pattern('[a-z0-9_]+@veolia.com')]);
+  email = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9_.]+@veolia.com')]);
   confirmpassword = new FormControl('', [Validators.required]);
   errorMessage = '';
 
