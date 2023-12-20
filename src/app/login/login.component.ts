@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -11,9 +12,9 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent {
 
-  constructor(private router: Router,private userService: UserService) {}
+  constructor(private router: Router,private userService: UserService, private authservice: AuthService) {}
 
-  email = new FormControl('', [Validators.required,Validators.pattern('[a-z0-9_]+@veolia.com'),]);
+  email = new FormControl('', [Validators.required,Validators.pattern('[A-Za-z0-9_.]+@veolia.com'),]);
   password = new FormControl('', [Validators.required]);
 
 
@@ -73,10 +74,15 @@ export class LoginComponent {
       console.log(data);
       if (data['Code']=="Success") 
       { 
+        this.authservice.isAuthenticated=true;
+        this.userService.usermail=this.email.value;
+        console.log(this.authservice.isAuthenticated);
         this.router.navigate(['home']);
       }
       else {
+        this.invalidcred = true;
         this.errormessage = data['Message'];
+        console.log(data['Message'])
       }
     })
     
