@@ -6,11 +6,11 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  //{ path: "home", component: HomeComponent , canActivate:[AuthGuard]},
+  { path: "home", component: HomeComponent , canActivate:[AuthGuard]},
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent},
- { path: "home", component: HomeComponent }
+ //{ path: "home", component: HomeComponent }
   //{ path: "profile", redirectTo: "/home", pathMatch: "full" },
   //{ path: "", redirectTo: "/profile", pathMatch: "full" },
 ];
